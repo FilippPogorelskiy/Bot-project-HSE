@@ -17,6 +17,5 @@ selenium==3.141.0
 six==1.15.0
 soupsieve==2.0.1
 tabulate==0.8.7
-telebot==0.0.3
 urllib3==1.25.11
 virtualenv==20.1.0
