@@ -6,6 +6,7 @@ from telebot.types import Message
 from time import sleep
 from selenium import webdriver as wb
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from bs4 import BeautifulSoup as bs
 import os
 
@@ -18,9 +19,16 @@ bot = telebot.TeleBot(token)
 def get_town_name(town_input):
     global br
     global gismeteo_url
-    options = FirefoxOptions()
-    options.add_argument("--headless")
-    br = wb.Firefox(options=options)
+    #options = FirefoxOptions()
+    #options.add_argument("--headless")
+    #br = wb.Firefox(options=options)
+    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    chrome_options = wb.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.binary_location = GOOGLE_CHROME_PATH
+    br = wb.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     gismeteo_url = 'https://www.gismeteo.ru'
     br.get(gismeteo_url)
     town_field = br.find_element_by_xpath('//*[@id="js-search"]')
