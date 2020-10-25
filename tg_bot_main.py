@@ -30,7 +30,7 @@ def get_town_name(town_input):
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
-    br = wb.Chrome(execution_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=chrome_options)
+    br = wb.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=chrome_options)
     gismeteo_url = 'https://www.gismeteo.ru'
     br.get(gismeteo_url)
     town_field = br.find_element_by_xpath('//*[@id="js-search"]')
