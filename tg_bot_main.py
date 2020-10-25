@@ -25,10 +25,12 @@ def get_town_name(town_input):
     GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
     CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
     chrome_options = wb.ChromeOptions()
-    chrome_options.add_argument('--disable-gpu')
+    chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
-    br = wb.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    br = wb.Chrome(execution_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=chrome_options)
     gismeteo_url = 'https://www.gismeteo.ru'
     br.get(gismeteo_url)
     town_field = br.find_element_by_xpath('//*[@id="js-search"]')
