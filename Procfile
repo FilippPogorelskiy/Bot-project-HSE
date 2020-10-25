@@ -1,2 +1,2 @@
-bot: python tg_bot_main.py
+bot: python3 tg_bot_main.py
 
